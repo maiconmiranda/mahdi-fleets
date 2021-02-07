@@ -3,6 +3,7 @@ import { Wrap } from "../signUp/SignUpStyle";
 import { FormWrap, ButtonWrap } from "../logIn/LogInStyle";
 import { Form, Button } from "react-bootstrap";
 import { useParams, useHistory } from "react-router-dom";
+import { GetUser } from '../main/getUser';
 
 export function UpdateCompany() {
   let history = useHistory();
@@ -15,7 +16,9 @@ export function UpdateCompany() {
   const [state, setState] = useState("");
   const [contactNumber, setContactNumber] = useState("");
   const [website, setWebsite] = useState("");
-  const { id } = useParams();
+  const getCompanyId = GetUser();
+  const id = getCompanyId.first;
+
 
   useEffect(() => {
     // localhost:3000/company/10

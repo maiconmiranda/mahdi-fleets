@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import { CardColumns, Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
+
 const CardFooterStyle = {
   display: "flex",
   justifyContent: "space-evenly",
   borderBottom: "1px solid #227C9D",
   borderTop: "1px solid #227C9D",
-  backgroundColor: "white"
+  backgroundColor: "white",
 };
 
 export function DisplayAllVehicles() {
