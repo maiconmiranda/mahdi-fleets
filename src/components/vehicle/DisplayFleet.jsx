@@ -67,11 +67,11 @@ export function DisplayAllVehicles() {
                     <p>Year: {vehicle.year}</p>
                     <p>Color: {vehicle.color}</p>
                     <p>Rego: {vehicle.rego}</p>
-                    <p>Rego: {vehicle.id}</p>
+                    <p>Id: {vehicle.id}</p>
                   </Card.Text>
                 </Card.Body>
                 <Card.Footer style={CardFooterStyle}>
-                  <Link to={{ pathname: `/view-vehicle/${vehicle.id}`, data: vehicleId }}>
+                  <Link to={{ pathname: `/view-vehicle/${vehicle.id}`, id: vehicleId }}>
                     <Button variant="success">View</Button>
                   </Link>
                   <Link onClick={(e) => onDeleteLinkClick(e, vehicle)}

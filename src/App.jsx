@@ -13,7 +13,9 @@ import ViewAllDrivers from "./components/driverCompanyDash/DashViewAllDrivers";
 import ViewDriver from "./components/driverCompanyDash/DashViewOneDriver";
 import ViewAllVehicles from "./components/vehicle/DashViewFleet";
 import AddVehicles from "./components/vehicle/DashAddVehicle";
+
 import EditVehicles from "./components/vehicle/DashEditVehicle";
+
 import ViewOneVehicle from "./components/vehicle/DashViewOneVehicle";
 import DisplayAssignDriver from "./components/assignDriver/DashAssignDriverToVehicle";
 import ViewReports from "./components/viewReports/DashViewReports";
@@ -34,12 +36,14 @@ const App = () => {
       <Route path="/create-company" component={CreateCompany} />
       <Route path="/companies/:id" component={GetCompany} />
       <Route path="/get_user" component={GetUser} />
-      <Route path="/update-company/:id" component={UpdateCompany} />
+      <Route path="/update-company" component={UpdateCompany} />
       <Route path="/view-all-drivers" component={ViewAllDrivers} />
       <Route path="/view-driver" component={ViewDriver} />
       <Route path="/view-all-vehicles" component={ViewAllVehicles} />
       <Route path="/add-vehicle" component={AddVehicles} />
-      <Route path="/edit-vehicle/:id" component={EditVehicles} />
+
+      <Route path="/edit-vehicle/" component={EditVehicles} />
+      
       <Route path="/view-vehicle/:id" component={ViewOneVehicle} />
       <Route path="/assign-driver" component={DisplayAssignDriver} />
       <Route path="/view-reports" component={ViewReports} />
