@@ -1,8 +1,16 @@
-import React from "react";
+import React , { useState } from "react";
 import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 
-export function DisplayReports() {
+export function DisplayReports(props) {
+  const location = useLocation();
+  const history = useHistory();
+  const driver = location.data.id;
+  console.log(driver)
+
+
+
   return (
     <>
       <div style={{ marginTop: "50px" }}>

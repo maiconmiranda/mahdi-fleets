@@ -38,34 +38,19 @@ export function DisplayAllDrivers(props) {
     fetchDrivers();
   }, [id]);
 
-  // async function onDeleteLinkClick(e, user.id) {
-  //   console.log(user.id)
-  //   try {
-  //     e.preventDefault();
-  //     if (window.confirm("Would you like to delete?")) {
-  //       await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${user.id}`, {
-  //         method: "DELETE",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           'Authorization': `Bearer ${localStorage.getItem("token")}`,
-  //         },
-  //       });
-  //       fetchDrivers();
-  //     }
-  //   } catch (err) {
-  //     console.log(err.message);
-  //   }
-  // }
+  
 
   return (
     <CardColumns style={{ marginTop: "50px" }}>
       <h3>View Driver</h3>
       {users.map((user) => {
+        const userId = user.id
+        const driver = user
         return (
         <Card className="card card-body h-100">
           <div classname="col-sm-4 py-2">
             <Card.Body>
-              <Card.Title>Driver Name</Card.Title>
+              <Card.Title>Driver Name : {user.user_name}</Card.Title>
               <Card.Text>
                 <p>Email: {user.email}</p>
                 <p>Driver ID: {user.driver_id}</p>
@@ -73,7 +58,7 @@ export function DisplayAllDrivers(props) {
               </Card.Text>
             </Card.Body>
             <Card.Footer style={CardFooterStyle}>
-              <Link to="/view-driver">
+              <Link to={{pathname:"/view-driver", data: driver}}>
                 <Button variant="success">View</Button>
               </Link>
             </Card.Footer>
