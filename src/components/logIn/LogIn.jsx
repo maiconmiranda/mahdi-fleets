@@ -46,7 +46,7 @@ export function LogIn() {
           console.log(selectedUser);
           console.log(id);
           console.log(isAdmin);
-          isAdmin ? history.push({ pathname: "/company", state: { companyId: id, userName: isUser } }) : history.push("/");
+          isAdmin ? history.push({ pathname: "/company", state: { companyId: id, userName: isUser }}) : history.push("/");
         });
 
     } catch (err) {
