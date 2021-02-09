@@ -81,7 +81,7 @@ export function AssignDriverToVehicle(props) {
     })
       .then((res) => res.json())
       .then((users) => {
-        const availDrivers = users.filter((user) => user.is_chosen === false);
+        const availDrivers = users.filter((user) => user.is_chosen === false && user.is_admin === false);
         console.log(availDrivers);
         const countOne = availDrivers.length;
         setDrivers(availDrivers);

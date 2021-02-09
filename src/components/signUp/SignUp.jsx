@@ -73,7 +73,7 @@ export function SignUp(props) {
       if (response.status >= 400) {
         throw new Error("incorrect credentials");
       } else {
-        isAdmin ? history.push("/company") : history.push("/");
+        isAdmin ? history.push("/company") : history.push("/driver");
       }
     } catch (err) {
       console.log(err.message);

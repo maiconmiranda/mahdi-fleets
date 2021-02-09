@@ -18,7 +18,7 @@ export function EditVehicle(props) {
     location.data.rego_expiry_date
   );
   const [registrationCost, setRegistrationCost] = useState(
-    location.data.registration_cost
+    location.data.rego_fee
   );
   const [insuranceProvider, setInsuranceProvider] = useState(
     location.data.insurance_provider
@@ -30,10 +30,10 @@ export function EditVehicle(props) {
     location.data.insurance_expiry_date
   );
   const [insuranceCosts, setInsuranceCosts] = useState(
-    location.data.insurance_costs
+    location.data.insurance_fee
   );
   const [maintenanceCosts, setMaintenanceCosts] = useState(
-    location.data.maintenance_costs
+    location.data.maintenance_fee
   );
 
   // useEffect(() => {
@@ -68,7 +68,7 @@ export function EditVehicle(props) {
             color: color,
             rego: rego,
             rego_expiry_date: regoExpiryDate,
-            registration_fee: registrationCost,
+            rego_fee: registrationCost,
             insurance_provider: insuranceProvider,
             insurance_policy_number: insurancePolicyNumber,
             insurance_expiry_date: insuranceExpiryDate,
@@ -78,7 +78,7 @@ export function EditVehicle(props) {
         }),
       });
       // redirect_to
-      history.push("/company");
+      history.push("/view-all-vehicles");
     } catch (err) {
       console.log(err.message);
     }
