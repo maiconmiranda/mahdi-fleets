@@ -19,34 +19,34 @@ import DisplayAssignDriver from "./components/assignDriver/DashAssignDriverToVeh
 import ViewReports from "./components/viewReports/DashViewReports";
 import DashDailyTrack from "./components/viewDailyTracks/DashDailyTrack";
 import DashReportByVehicle from "./components/dailytrackByVehicle/DashReportByVehicle";
-import { GetCompany } from './components/createCompany/getCompany';
 import { GetUser } from './components//main/getUser';
 import { Driver } from "./components/driverPage/Driver";
+import { DriverProtectedRoute } from './components/protectedRoutes/DriverProtectedRoute';
+import { ProtectedRoute } from './components/protectedRoutes/ProtectedRoute'
 
 const App = () => {
   return (
     <Switch>
       <Route exact path="/" component={Home} />
-      <Route path="/company" component={Dashboard} />
+      <ProtectedRoute path="/company" component={Dashboard} />
       <Route path="/how-it-works" component={HowItWorks} />
       <Route path="/login" component={LogIn} />
       <Route path="/create-account" component={CreateAccount} />
       <Route path="/sign-up" component={SignUp} />
-      <Route path="/create-company" component={CreateCompany} />
-      <Route path="/companies/:id" component={GetCompany} />
+      <Route path="/create-company" component={CreateCompany} />     
       <Route path="/get_user" component={GetUser} />
-      <Route path="/update-company" component={UpdateCompany} />
-      <Route path="/view-all-drivers" component={ViewAllDrivers} />
-      <Route path="/view-driver" component={ViewDriver} />
-      <Route path="/view-all-vehicles" component={ViewAllVehicles} />
-      <Route path="/add-vehicle" component={AddVehicles} />
-      <Route path="/edit-vehicle/" component={EditVehicles} />      
-      <Route path="/view-vehicle/:id" component={ViewOneVehicle} />
-      <Route path="/assign-driver" component={DisplayAssignDriver} />
-      <Route path="/view-reports" component={ViewReports} />
-      <Route path="/view-daily-track" component={DashDailyTrack} />
-      <Route path="/daily-report-vehicle" component={DashReportByVehicle} />
-      <Route path="/driver" component={Driver} />
+      <ProtectedRoute path="/update-company" component={UpdateCompany} />
+      <ProtectedRoute path="/view-all-drivers" component={ViewAllDrivers} />
+      <ProtectedRoute path="/view-driver" component={ViewDriver} />
+      <ProtectedRoute path="/view-all-vehicles" component={ViewAllVehicles} />
+      <ProtectedRoute path="/add-vehicle" component={AddVehicles} />
+      <ProtectedRoute path="/edit-vehicle/" component={EditVehicles} />      
+      <ProtectedRoute path="/view-vehicle/:id" component={ViewOneVehicle} />
+      <ProtectedRoute path="/assign-driver" component={DisplayAssignDriver} />
+      <ProtectedRoute path="/view-reports" component={ViewReports} />
+      <ProtectedRoute path="/view-daily-track" component={DashDailyTrack} />
+      <ProtectedRoute path="/daily-report-vehicle" component={DashReportByVehicle} />
+      <DriverProtectedRoute path="/driver" component={Driver} />
     </Switch>
   );
 };

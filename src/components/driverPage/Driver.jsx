@@ -3,9 +3,10 @@ import { useHistory } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 import { FormWrap } from "../logIn/LogInStyle";
 import { GetUser } from "../main/getUser";
+import { HomeNavBar} from "../homeNavBar/HomeLoggedNav";
 
 export function Driver() {
-  const history = useHistory();  
+  const history = useHistory();
   const [driverTrack, setDriverTrack] = useState([]);
   const [trackId, setTrackId] = useState();
   const [vehicleId, setVehicleId] = useState("");
@@ -20,16 +21,18 @@ export function Driver() {
   const user = GetUser();
   const count = user.id;
   console.log(count);
-  
 
+  // form is submitted here
   async function onFormSubmit(e) {
     const track_id = trackId;
     console.log(trackId);
     console.log(driverId);
     console.log(vehicleId);
 
+   
     try {
       e.preventDefault();
+      // current track is updated
       await fetch(
         `${process.env.REACT_APP_BACKEND_URL}/daily_tracks/${trackId}`,
         {
@@ -46,12 +49,12 @@ export function Driver() {
               parking_fee: parkingFee,
               fines: fines,
               other_fee: otherFee,
-              other_fee_description: otherFeeDescription,  
-
+              other_fee_description: otherFeeDescription,
             },
           }),
         }
       );
+      // driver availability changed to true
       await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${driverId}`, {
         method: "PUT",
         headers: {
@@ -64,6 +67,7 @@ export function Driver() {
           },
         }),
       });
+      // vehicle availability changed to true
       await fetch(
         `${process.env.REACT_APP_BACKEND_URL}/vehicles/${vehicleId}`,
         {
@@ -79,14 +83,14 @@ export function Driver() {
           }),
         }
       );
-      setDriverTrack('');
+      setDriverTrack("");
 
       history.push("/");
     } catch (err) {
       console.log(err.message);
     }
   }
-
+   // All daily tracks for logged in driver are received
   function fetchDailyTracks() {
     fetch(`${process.env.REACT_APP_BACKEND_URL}/daily_tracks`)
       //     Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -96,6 +100,7 @@ export function Driver() {
         const thisDriverTracks = tracks.filter(
           (track) => track.user_id === count
         );
+        // the last track of current driver is received that has not been completed yet
         if (thisDriverTracks.length > 0) {
           const last = thisDriverTracks[thisDriverTracks.length - 1];
           setDriverTrack(last);
@@ -104,7 +109,7 @@ export function Driver() {
           // console.log(last.vehicle_id)
           setVehicleId(last.vehicle_id);
           // setTrackId(last.id)
-          setTrackId(last.id)
+          setTrackId(last.id);
 
           console.log(last);
         }
@@ -117,6 +122,7 @@ export function Driver() {
 
   return (
     <>
+      <HomeNavBar />
       <FormWrap style={{ marginTop: "100px" }}>
         <Form onSubmit={onFormSubmit}>
           <Form.Group>

@@ -20,12 +20,18 @@ export function AssignDriverToVehicle(props) {
   const id = company.company_id;
   console.log(id);
 
+
+  // form is submitted here
+
   async function onFormSubmit(e) {
     const user_id = driverId;
     const vehicle_id = vehicleId;
     console.log(user_id, vehicle_id, countOne, countTwo);
     try {
       e.preventDefault();
+
+      // new daily track for selected driver is created by assigning a vehicle 
+
       await fetch(`${process.env.REACT_APP_BACKEND_URL}/daily_tracks`, {
         method: "POST",
         headers: {
@@ -40,6 +46,9 @@ export function AssignDriverToVehicle(props) {
           },
         }),
       });
+
+      // selected driver is no longer available to be assigned to other tracks
+
       await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${user_id}`, {
         method: "PUT",
         headers: {
@@ -52,6 +61,9 @@ export function AssignDriverToVehicle(props) {
           },
         }),
       });
+
+      // selected vehicle is no longer available to be assigned to other tracks
+
       await fetch(`${process.env.REACT_APP_BACKEND_URL}/vehicles/${vehicle_id}`, {
         method: "PUT",
         headers: {
@@ -63,7 +75,7 @@ export function AssignDriverToVehicle(props) {
             is_selected: true,
           },
         }),
-      });
+      });      
 
       setDriverUserName("");
       setVehicleFleetId("");
@@ -72,6 +84,8 @@ export function AssignDriverToVehicle(props) {
       console.log(err.message);
     }
   }
+
+  // all available drivers of the current company are receieved
 
   function fetchDrivers() {
     fetch(`${process.env.REACT_APP_BACKEND_URL}/users-company`, {
@@ -89,6 +103,8 @@ export function AssignDriverToVehicle(props) {
         console.log(countOne);
       });
   }
+
+  // all available vehicles of the current company are receieved
 
   function fetchVehicles() {
     fetch(`${process.env.REACT_APP_BACKEND_URL}/vehicles-company`, {

@@ -3,11 +3,21 @@ import "./HomeNavStyle.css";
 import { NavLink } from "react-router-dom";
 import { Navbar, Nav } from "react-bootstrap";
 import logo from "../../assets/logo.svg";
-
+import {useHistory} from 'react-router-dom'
 // import {Link} from 'react-router-dom'
 // import { Nav, NavLink, NavLinks, Logo } from "./styles/App";
 
 export function HomeNavBar() {
+  const history = useHistory()
+
+
+  function logout(e) {
+    e.preventDefault();
+    localStorage.removeItem("token");
+    history.push("/")
+  }
+
+
   return (
     <Navbar collapseOnSelect expand="md" py-5 className="navbar-custom">
       <Navbar.Brand href="#home">
@@ -22,7 +32,7 @@ export function HomeNavBar() {
           <NavLink to="/how-it-works" className="nav_link">
             How It Works
           </NavLink>
-          <NavLink to="/login" className="nav_link">
+          <NavLink to="/" className="nav_link" onClick={logout}>
             Log Out
           </NavLink>
         </Nav>

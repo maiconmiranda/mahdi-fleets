@@ -24,11 +24,15 @@ export function AddVehicle() {
   const getUser = GetUser();
   const userId = getUser.id;
   const companyId = getUser.company_id;
-  // console.log(userId, companyId)
+ 
+  // form is submitted here
 
   async function onFormSubmit(e) {
     try {
       e.preventDefault();
+
+      // new vehicle is created and saved to database
+
       await fetch(`${process.env.REACT_APP_BACKEND_URL}/vehicles`, {
         method: "POST",
         headers: {
